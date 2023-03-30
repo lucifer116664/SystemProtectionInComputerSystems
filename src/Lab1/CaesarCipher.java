@@ -9,7 +9,7 @@ public class CaesarCipher {
     private JButton encryptButton;
     private JButton clearButton;
     private JComboBox<String> signComboBox;
-    private final String alphabet = "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя";
+    private final String ALPHABET = "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя";
     public CaesarCipher() {
         signComboBox.addItem("+");
         signComboBox.addItem("-");
@@ -19,21 +19,27 @@ public class CaesarCipher {
             try {
                 int step = Integer.parseInt(stepTextField.getText());
                 for (int i = 0; i < messageTextField.getText().length(); i++) {
-                    int index = alphabet.indexOf(messageTextField.getText().toCharArray()[i]);
+                    int index = ALPHABET.indexOf(messageTextField.getText().toCharArray()[i]);
                     if (signComboBox.getSelectedItem() == "+") {
-                        for (int j = 0; j < step; j++) {
+                        /*for (int j = 0; j < step; j++) {
                             index++;
                             if (index == 33)
                                 index = 0;
-                        }
-                        encryptedMsgTextField.setText(encryptedMsgTextField.getText() + alphabet.toCharArray()[index]);
+                        }*/
+                        index += step;
+                        index %= 33;
+                        encryptedMsgTextField.setText(encryptedMsgTextField.getText() + ALPHABET.toCharArray()[index]);
                     } else {
-                        for (int j = 0; j < step; j++) {
+                        /*for (int j = 0; j < step; j++) {
                             index--;
                             if (index == -1)
                                 index = 32;
-                        }
-                        encryptedMsgTextField.setText(encryptedMsgTextField.getText() + alphabet.toCharArray()[index]);
+                        }*/
+                        index -= step;
+                        index %= 33;
+                        if(index < 0)
+                            index += ALPHABET.length();
+                        encryptedMsgTextField.setText(encryptedMsgTextField.getText() + ALPHABET.toCharArray()[index]);
                     }
                 }
             } catch (NumberFormatException ex) {
