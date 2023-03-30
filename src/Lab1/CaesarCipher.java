@@ -19,6 +19,10 @@ public class CaesarCipher {
             try {
                 int step = Integer.parseInt(stepTextField.getText());
                 for (int i = 0; i < messageTextField.getText().length(); i++) {
+                    if (!ALPHABET.contains(Character.toString(messageTextField.getText().toCharArray()[i]))) {
+                        encryptedMsgTextField.setText(encryptedMsgTextField.getText() + messageTextField.getText().toCharArray()[i]);
+                        continue;
+                    }
                     int index = ALPHABET.indexOf(messageTextField.getText().toCharArray()[i]);
                     if (signComboBox.getSelectedItem() == "+") {
                         /*for (int j = 0; j < step; j++) {
@@ -43,7 +47,7 @@ public class CaesarCipher {
                     }
                 }
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "You can enter only integer numbers in \"Step\" text field", "Wrong step entered", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "You can enter only integer numbers in \"Step\" text field", "Wrong step entered!", JOptionPane.WARNING_MESSAGE);
             }
         });
 
