@@ -43,29 +43,33 @@ public class SubstitutionCipher {
         for(int i = 0; i < text.length() % keyTextField.getText().length(); i++)
             text += text.toCharArray()[i];
 
-        for(int i = 0; i < text.length(); i+=keyTextField.getText().length()) {
+        for(int i = 0; i < text.length(); i += keyTextField.getText().length()) {
             char[] buffer = new char[keyTextField.getText().length()];
 
-            for(int j = 0; j < keyTextField.getText().length(); j++) {
+            for(int j = 0; j < buffer.length; j++) {
                 buffer[Character.getNumericValue(keyTextField.getText().toCharArray()[j]) - 1] = text.toCharArray()[i + j];
             }
 
             resultTextField.setText(resultTextField.getText() + new String(buffer));
         }
-
     }
 
     public void decrypt() {
-        String text = msgTextField.getText();
+        try {
+            String text = msgTextField.getText();
 
-        for(int i = 0; i < text.length(); i+=keyTextField.getText().length()) {
-            char[] buffer = new char[keyTextField.getText().length()];
+            for (int i = 0; i < text.length(); i += keyTextField.getText().length()) {
+                char[] buffer = new char[keyTextField.getText().length()];
 
-            for(int j = 0; j < keyTextField.getText().length(); j++) {
-                buffer[j] = text.toCharArray()[i + Character.getNumericValue(keyTextField.getText().toCharArray()[j]) - 1];
+                for (int j = 0; j < buffer.length; j++) {
+                    buffer[j] = text.toCharArray()[i + Character.getNumericValue(keyTextField.getText().toCharArray()[j]) - 1];
+                }
+
+                resultTextField.setText(resultTextField.getText() + new String(buffer));
             }
-
-            resultTextField.setText(resultTextField.getText() + new String(buffer));
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            resultTextField.setText("");
+            JOptionPane.showMessageDialog(null, "You are trying to decrypt message that wasn't encrypted with current key", "Undecryptable message!", JOptionPane.WARNING_MESSAGE);
         }
     }
 
