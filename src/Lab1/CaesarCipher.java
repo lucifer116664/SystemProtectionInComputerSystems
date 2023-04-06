@@ -19,11 +19,11 @@ public class CaesarCipher {
             try {
                 int step = Integer.parseInt(stepTextField.getText());
                 for (int i = 0; i < messageTextField.getText().length(); i++) {
-                    if (!ALPHABET.contains(Character.toString(messageTextField.getText().toCharArray()[i]))) {
+                    if (!ALPHABET.contains(Character.toString(messageTextField.getText().toLowerCase().toCharArray()[i]))) {
                         encryptedMsgTextField.setText(encryptedMsgTextField.getText() + messageTextField.getText().toCharArray()[i]);
                         continue;
                     }
-                    int index = ALPHABET.indexOf(messageTextField.getText().toCharArray()[i]);
+                    int index = ALPHABET.indexOf(messageTextField.getText().toLowerCase().toCharArray()[i]);
                     if (signComboBox.getSelectedItem() == "+") {
                         /*for (int j = 0; j < step; j++) {
                             index++;
@@ -66,6 +66,6 @@ public class CaesarCipher {
         frame.setContentPane(new CaesarCipher().panel);
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        frame.setBounds(toolkit.getScreenSize().width / 2 - 150,toolkit.getScreenSize().height / 2 - 200,400,150);
+        frame.setBounds(toolkit.getScreenSize().width / 2 - 150,toolkit.getScreenSize().height / 2 - 200,400,200);
     }
 }
