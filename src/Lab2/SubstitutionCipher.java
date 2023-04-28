@@ -2,7 +2,6 @@ package Lab2;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
 
 public class SubstitutionCipher {
     private JPanel panel;
