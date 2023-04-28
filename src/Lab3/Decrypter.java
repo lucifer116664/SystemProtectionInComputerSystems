@@ -15,9 +15,9 @@ public class Decrypter {
     private JButton clearButton;
     private String encodedMessage;
     private final String alphabet = "abcdefghijklmnopqrstuvwxyz";
-    private final Map<Character, Double> alphabetPercentage = new LinkedHashMap<Character, Double>();
-    private final Map<Character, Integer> alphabetNumOfCharInMessage = new LinkedHashMap<Character, Integer>();
-    private final Map<Character, Double> alphabetPercentageOfCharInMessage = new LinkedHashMap<Character, Double>();
+    private final Map<Character, Double> alphabetPercentage = new LinkedHashMap<>();
+    private final Map<Character, Integer> alphabetNumOfCharInMessage = new LinkedHashMap<>();
+    private final Map<Character, Double> alphabetPercentageOfCharInMessage = new LinkedHashMap<>();
 
     public Decrypter() {
         enterAlphabet();
